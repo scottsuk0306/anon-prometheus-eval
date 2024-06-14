@@ -21,8 +21,7 @@ ACCELERATE_LOG_LEVEL=info accelerate launch --config_file recipes/accelerate_con
 # Read the instruction below.
 ```
 
-- For merging the two expert 7B models, we utilized [LazyMergekit.ipynb](https://colab.research.google.com/drive/1obulZ1ROXHjYLn6PPZJwRR6GzgQogxxb?usp=sharing), which facilitates easy merging between multiple models and also supports uploading to the Hugging Face Hub. Special thanks to Maxime Labonne for releasing such a useful notebook!
-- We used the mergekit argument below.
+- For merging the two expert 7B models, we utilized [LazyMergekit.ipynb](https://colab.research.google.com/drive/1obulZ1ROXHjYLn6PPZJwRR6GzgQogxxb?usp=sharing), which facilitates easy merging between multiple models and also supports uploading to the Hugging Face Hub.
 
 ```
 models:
@@ -35,6 +34,7 @@ models:
 merge_method: linear
 dtype: bfloat16
 ```
+
 
 ## Prometheus-8x7B-v2.0 training examples
 

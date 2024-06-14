@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/prometheus-eval/prometheus-eval/main/assets/logo.png" alt="Prometheus-Logo" style="width: 15%; display: block; margin: auto;">
+  <img src="assets/logo.png" alt="Prometheus-Logo" style="width: 15%; display: block; margin: auto;">
 </p>
 
 <h1 align="center">🔥 Prometheus-Eval 🔥</h1>
@@ -52,8 +52,6 @@ You can also take advantage of Prometheus-Eval! For installation details for var
 ```python
 from prometheus_eval.litellm import LiteLLM, AsyncLiteLLM
 
-model = LiteLLM('openai/prometheus-eval/prometheus-7b-v2.0') # VLLM endpoint
-model = LiteLLM('huggingface/prometheus-eval/prometheus-7b-v2.0') # Huggingface TGI
 model = AsyncLiteLLM('gpt-4-turbo', requests_per_minute=100) # GPT-4 API (async generation considering rate limit)
 # And so much more!
 
@@ -75,7 +73,7 @@ from prometheus_eval.vllm import VLLM
 from prometheus_eval import PrometheusEval
 from prometheus_eval.prompts import ABSOLUTE_PROMPT, SCORE_RUBRIC_TEMPLATE
 
-model = VLLM(model="prometheus-eval/prometheus-7b-v2.0")
+model = ...
 judge = PrometheusEval(model=model, absolute_grade_template=ABSOLUTE_PROMPT)
 
 instruction = "Struggling with a recent break-up, a person opens up about the intense feelings of loneliness and sadness. They ask for advice on how to cope with the heartbreak and move forward in life.",
@@ -116,8 +114,8 @@ from prometheus_eval.vllm import VLLM
 from prometheus_eval import PrometheusEval
 from prometheus_eval.prompts import RELATIVE_PROMPT
 
-model = VLLM(model="prometheus-eval/prometheus-7b-v2.0")
-judge = PrometheusEval(model_id="prometheus-eval/prometheus-7b-v2.0", relative_grade_template=RELATIVE_PROMPT)
+model = ...
+judge = PrometheusEval(model=model, relative_grade_template=RELATIVE_PROMPT)
 
 
 data = {
@@ -141,7 +139,7 @@ print("Score:", score)
 
 ### Batch Grading
 
-***Note***: If you have multiple responses to grade, don't use `single_absolute_grade` / `single_relative_grade` - instead, use `absolute_grade` and `relative_grade`! It will give you more than 10x speedup. Refer to the documentation [here](https://prometheus-eval.github.io/prometheus-eval/docs/advanced-usage.html#53-handling-large-datasets)! 
+***Note***: If you have multiple responses to grade, don't use `single_absolute_grade` / `single_relative_grade` - instead, use `absolute_grade` and `relative_grade`! It will give you more than 10x speedup.
 
 ```python
 instructions = [...]  # List of instructions
@@ -188,67 +186,9 @@ The `prometheus-eval` package provides a simple interface for evaluating instruc
 - `relative_grade`: Evaluates two responses based on a given instruction and score rubric. Outputs 'A' or 'B' based on the better response.
 
 
-### Using the weights from Huggingface Hub 🤗
-
-If you prefer directly working with the weights uploaded in Huggingface Hub, you can directly download the model weights! 
-
-```python
-from transformers import AutoModelForCausalLM, AutoTokenizer
-
-device = "cuda" # the device to load the model onto
-
-model = AutoModelForCausalLM.from_pretrained("prometheus-eval/prometheus-7b-v2.0")
-tokenizer = AutoTokenizer.from_pretrained("prometheus-eval/prometheus-7b-v2.0")
-
-ABS_SYSTEM_PROMPT = "You are a fair judge assistant tasked with providing clear, objective feedback based on specific criteria, ensuring each assessment reflects the absolute standards set for performance."
-
-ABSOLUTE_PROMPT = """###Task Description:
-An instruction (might include an Input inside it), a response to evaluate, a reference answer that gets a score of 5, and a score rubric representing a evaluation criteria are given.
-1. Write a detailed feedback that assess the quality of the response strictly based on the given score rubric, not evaluating in general.
-2. After writing a feedback, write a score that is an integer between 1 and 5. You should refer to the score rubric.
-3. The output format should look as follows: "Feedback: (write a feedback for criteria) [RESULT] (an integer number between 1 and 5)"
-4. Please do not generate any other opening, closing, and explanations.
-
-###The instruction to evaluate:
-{instruction}
-
-###Response to evaluate:
-{response}
-
-###Reference Answer (Score 5):
-{reference_answer}
-
-###Score Rubrics:
-{rubric}
-
-###Feedback: """
-
-user_content = ABS_SYSTEM_PROMPT + "\n\n" + ABSOLUTE_PROMPT.format(...) # Fill the prompt with your data
-
-messages = [
-    {"role": "user", "content": user_content},
-]
-
-encodeds = tokenizer.apply_chat_template(messages, return_tensors="pt")
-
-model_inputs = encodeds.to(device)
-model.to(device)
-
-generated_ids = model.generate(model_inputs, max_new_tokens=1000, do_sample=True)
-decoded = tokenizer.batch_decode(generated_ids)
-print(decoded[0])
-
-
-```
-
 ## 📚 Learn more
 
 | Section | Description |
 |-|-|
 | [Training Prometheus](train/README.md) | Instructions to replicate Prometheus 2 models. Based on the [alignment-handbook](https://github.com/huggingface/alignment-handbook) repository. |
 | [Evaluating Prometheus](eval/README.md) | Instructions to evaluate Prometheus 2 models. |
-
-
-## 👏 Acknowledgements
-
-The underlying codebase for training originates from Huggingface's [Alignment Handbook](https://github.com/huggingface/alignment-handbook) and [Super Mario Merging](https://github.com/martyn/safetensors-merge-supermario) repository. Also, for inference, it heavily utilizes the [litellm](https://github.com/BerriAI/litellm), [vllm](https://github.com/vllm-project/vllm) and the [transformer](https://github.com/huggingface/transformers) library. Huge thanks to all the contributors for these awesome repositories!! 🙌

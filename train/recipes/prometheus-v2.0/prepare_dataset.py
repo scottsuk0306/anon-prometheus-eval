@@ -16,8 +16,8 @@ from tqdm import tqdm
 
 def prepare_dataset_properly():
     cache_dir = None
-    dataset_1 = load_dataset("kaist-ai/Feedback-Collection", cache_dir=cache_dir)
-    dataset_2 = load_dataset("kaist-ai/Preference-Collection", cache_dir=cache_dir)
+    dataset_1 = load_dataset("anonymized/Feedback-Collection", cache_dir=cache_dir)
+    dataset_2 = load_dataset("anonymized/Preference-Collection", cache_dir=cache_dir)
 
     df_1 = dataset_1["train"].to_pandas()
     df_2 = dataset_2["train"].to_pandas()

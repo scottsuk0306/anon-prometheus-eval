@@ -39,7 +39,7 @@ def merge_adapter(
     if is_merge:
         comb_type = "linear"  # ["cat", 'linear', 'svd']
         model.load_adapter(
-            "kaist-ai/prometheus-mixtral-alpha-2", adapter_name="adapter_2"
+            "YOUR_TRAINED_ADAPTER", adapter_name="adapter_2"
         )
         model.add_weighted_adapter(
             ["adapter_1", "adapter_2"],
