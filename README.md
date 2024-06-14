@@ -5,25 +5,12 @@
 <h1 align="center">🔥 Prometheus-Eval 🔥</h1>
 
 <p align="center">
-  <a href="https://arxiv.org/abs/2405.01535"><img src="https://img.shields.io/badge/arXiv-2405.01535-b31b1b.svg" alt="arXiv"></a>
-  <a href="https://huggingface.co/prometheus-eval"><img src="https://img.shields.io/badge/Hugging%20Face-Organization-ff9d00" alt="Hugging Face Organization"></a>
-  <a href="https://github.com/prometheus-eval/prometheus-eval/blob/main/LICENSE"><img src="https://img.shields.io/github/license/prometheus-eval/prometheus-eval.svg" alt="License"></a>
-  <a href="https://pypi.org/project/prometheus-eval/"><img src="https://badge.fury.io/py/prometheus-eval.svg" alt="PyPI version"></a>
-</p>
-
-<p align="center">
   ⚡ A repository for evaluating LLMs in generation tasks 🚀 ⚡ <br>
 </p>
 
 
 **Latest News** 🔥
 
-- [2024/06] We release the **BiGGen-Bench** and **Prometheus 2 BGB (8x7B)**!
-
-  - BiGGen-Bench features 9 core capabilities, 77 tasks, and 765 meticulously crafted instances, each with specific evaluation criteria.
-  - We evaluated 103 frontier language models by 5 state-of-the-art evaluator language models and analyzed the findings in our [paper](https://arxiv.org/abs/2406.05761).
-  - We continually trained Prometheus 2 8x7B on BiGGen-Bench evaluation trace and built our most capable evaluator LM [Prometheus 2 BGB](https://huggingface.co/prometheus-eval/prometheus-bgb-8x7b-v2.0), even surpassing Claude-3-Opus on absolute grading tasks.
-  - Checkout our [dataset](https://huggingface.co/datasets/prometheus-eval/BiGGen-Bench), [evaluation results](https://huggingface.co/datasets/prometheus-eval/BiGGen-Bench-Results), [leaderboard](https://huggingface.co/spaces/prometheus-eval/BiGGen-Bench-Leaderboard), [interactive report](https://hub.zenoml.com/project/c84cfca5-71c9-4f89-aa0e-218c65c821e4/BiGGen\%20Bench\%20Results), and the [code](https://github.com/prometheus-eval/prometheus-eval/tree/main/BiGGen-Bench)!
 
 - [2024/05] We release Prometheus 2 (7B & 8x7B) models!
 
@@ -178,22 +165,8 @@ feedbacks, scores = judge.absolute_grade(
 2. Collection of evaluation datasets for training and evaluating Prometheus models.
 3. Scripts for training Prometheus models or fine-tuning on custom datasets.
 
-### Prometheus 
 
-**Prometheus**🔥 is a family of open-source language models specialized in evaluating other language models. By effectively simulating human judgments and proprietary LM-based evaluations, we aim to resolve the following issues:
-
-* *Fairness*: Not relying on closed-source models for evaluations!
-
-* *Controllability*: You don’t have to worry about GPT version updates or sending your private data to OpenAI by constructing internal evaluation pipelines
-
-* *Affordability*: If you already have GPUs, it is free to use!
-
-<p align="center">
-<img align="center" alt="finegrained-eval" src="assets/finegrained_eval.png" width="550"/>
-</p>
-
-
-## 🚀 What's special about Prometheus?
+## 🚀 What's special about Prometheus 2?
 
 Compared to the Prometheus 1 models, the Prometheus 2 models support both **direct assessment** (absolute grading) and **pairwise ranking** (relative grading). 
 
@@ -272,62 +245,10 @@ print(decoded[0])
 
 | Section | Description |
 |-|-|
-| [Documentation](https://prometheus-eval.github.io/prometheus-eval/) | Overall Documentation for using the library |
-| [BiGGen-Bench Evaluation](BiGGen-Bench/README.md) | Instructions to evaluate your LM in BiGGen-Bench. You could also refer to the implementation for your own evaluation benchmark. |
 | [Training Prometheus](train/README.md) | Instructions to replicate Prometheus 2 models. Based on the [alignment-handbook](https://github.com/huggingface/alignment-handbook) repository. |
-| [Using Prometheus as a data quality filter](https://huggingface.co/blog/burtenshaw/distilabel-prometheus-2) | Cookbook for using Prometheus 2 as a quality filter in synthetic data generation. Huge thanks to the distilabel team! 🙌 |
-| [Using Prometheus as an evaluator in RAG](https://docs.llamaindex.ai/en/latest/examples/cookbooks/prometheus2_cookbook/) | Cookbook for using Prometheus 2 RAG applications. Huge thanks to the LlamaIndex team! 🙌 | 
+| [Evaluating Prometheus](eval/README.md) | Instructions to evaluate Prometheus 2 models. |
 
 
 ## 👏 Acknowledgements
 
 The underlying codebase for training originates from Huggingface's [Alignment Handbook](https://github.com/huggingface/alignment-handbook) and [Super Mario Merging](https://github.com/martyn/safetensors-merge-supermario) repository. Also, for inference, it heavily utilizes the [litellm](https://github.com/BerriAI/litellm), [vllm](https://github.com/vllm-project/vllm) and the [transformer](https://github.com/huggingface/transformers) library. Huge thanks to all the contributors for these awesome repositories!! 🙌
-
-
-## ⭐ Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=prometheus-eval/prometheus-eval&type=Date)](https://star-history.com/#prometheus-eval/prometheus-eval&Date)
-
-
-## Citation
-
-If you find our work useful, please consider citing our paper!
-
-```bibtex
-@misc{kim2024prometheus,
-      title={Prometheus 2: An Open Source Language Model Specialized in Evaluating Other Language Models}, 
-      author={Seungone Kim and Juyoung Suk and Shayne Longpre and Bill Yuchen Lin and Jamin Shin and Sean Welleck and Graham Neubig and Moontae Lee and Kyungjae Lee and Minjoon Seo},
-      year={2024},
-      eprint={2405.01535},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
-}
-```
-```bibtex
-@article{kim2023prometheus,
-  title={Prometheus: Inducing Fine-grained Evaluation Capability in Language Models},
-  author={Kim, Seungone and Shin, Jamin and Cho, Yejin and Jang, Joel and Longpre, Shayne and Lee, Hwaran and Yun, Sangdoo and Shin, Seongjin and Kim, Sungdong and Thorne, James and others},
-  journal={arXiv preprint arXiv:2310.08491},
-  year={2023}
-}
-```
-```bibtex
-@misc{lee2024prometheusvision,
-      title={Prometheus-Vision: Vision-Language Model as a Judge for Fine-Grained Evaluation}, 
-      author={Seongyun Lee and Seungone Kim and Sue Hyun Park and Geewook Kim and Minjoon Seo},
-      year={2024},
-      eprint={2401.06591},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
-}
-```
-```bibtex
-@misc{kim2024biggen,
-      title={The BiGGen Bench: A Principled Benchmark for Fine-grained Evaluation of Language Models with Language Models}, 
-      author={Seungone Kim and Juyoung Suk and Ji Yong Cho and Shayne Longpre and Chaeeun Kim and Dongkeun Yoon and Guijin Son and Yejin Cho and Sheikh Shafayat and Jinheon Baek and Sue Hyun Park and Hyeonbin Hwang and Jinkyung Jo and Hyowon Cho and Haebin Shin and Seongyun Lee and Hanseok Oh and Noah Lee and Namgyu Ho and Se June Joo and Miyoung Ko and Yoonjoo Lee and Hyungjoo Chae and Jamin Shin and Joel Jang and Seonghyeon Ye and Bill Yuchen Lin and Sean Welleck and Graham Neubig and Moontae Lee and Kyungjae Lee and Minjoon Seo},
-      year={2024},
-      eprint={2406.05761},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
-}
-```

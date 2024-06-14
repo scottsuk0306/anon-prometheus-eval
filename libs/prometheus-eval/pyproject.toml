@@ -2,7 +2,6 @@
 name = "prometheus-eval"
 version = "0.1.17"
 description = "A package for evaluating the performance of language models with Prometheus"
-authors = ["Juyoung Suk <juyoung@kaist.ac.kr>", "Seungone Kim <seungone@cmu.edu>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
