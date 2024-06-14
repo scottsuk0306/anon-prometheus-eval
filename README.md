@@ -1,12 +1,5 @@
-<p align="center">
-  <img src="assets/logo.png" alt="Prometheus-Logo" style="width: 15%; display: block; margin: auto;">
-</p>
 
-<h1 align="center">🔥 Prometheus-Eval 🔥</h1>
-
-<p align="center">
-  ⚡ A repository for evaluating LLMs in generation tasks 🚀 ⚡ <br>
-</p>
+<h1 align="center">🔥 Prometheus 2 🔥</h1>
 
 
 ## 🔧 Installation
