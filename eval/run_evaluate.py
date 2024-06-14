@@ -7,12 +7,11 @@ import warnings
 from collections import defaultdict
 from pathlib import Path
 
-from src import CACHE_DIR
-from src.evaluation.benchmark import EvalDataLoader
-from src.evaluation.prompts import ABS_SYSTEM_PROMPT, REL_SYSTEM_PROMPT
-from src.evaluation.prompts import RELATIVE_PROMPT as R2R_PROMPT
-from src.evaluation.utils import calculate_results, get_mode
-from src.llms.vllm_utils import VLLM
+from eval.benchmark import EvalDataLoader
+from eval.prompts import ABS_SYSTEM_PROMPT, REL_SYSTEM_PROMPT
+from eval.prompts import RELATIVE_PROMPT as R2R_PROMPT
+from eval.utils import calculate_results, get_mode
+from eval.llms.vllm_utils import VLLM
 from tqdm import tqdm
 from transformers import AutoTokenizer
 
@@ -475,7 +474,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--model_name",
         type=str,
-        default="kaist-ai/prometheus-7b-v1.5-beta-3",
+        default="YOUR_TRAINED_MODEL_CKPT_HERE",
         help="Name of the model to evaluate",
     )
     parser.add_argument(

@@ -2,8 +2,8 @@ import os
 from collections import defaultdict
 from pathlib import Path
 
-from src.evaluation.run_evaluate import calculate_results
-from src.evaluation.utils import parse_filename
+from eval.utils import calculate_results
+from eval.utils import parse_filename
 from tqdm import tqdm
 
 
