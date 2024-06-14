@@ -9,20 +9,6 @@
 </p>
 
 
-**Latest News** 🔥
-
-
-- [2024/05] We release Prometheus 2 (7B & 8x7B) models!
-
-  - **Prometheus 2 (8x7B)** is an open-source state-of-the-art evaluator language model!
-    - Compared to Prometheus 1 (13B), Prometheus 2 (8x7B) shows improved evaluation performances & supports assessing in pairwise ranking (relative grading) formats as well!
-    - It achieves a Pearson correlation of 0.6 to 0.7 with GPT-4-1106 on a 5-point Likert scale across multiple direct assessment benchmarks, including [VicunaBench](https://github.com/lm-sys/FastChat/tree/main/fastchat/llm_judge/data/vicuna_bench), [MT-Bench](https://github.com/lm-sys/FastChat/tree/main/fastchat/llm_judge/data/mt_bench), and [FLASK](https://github.com/kaistAI/FLASK). 
-    - It also scores a 72% to 85% agreement with human judgments across multiple pairwise ranking benchmarks, including [HHH Alignment](https://github.com/google/BIG-bench/tree/main/bigbench/benchmark_tasks/hhh_alignment), [MT Bench Human Judgment](https://huggingface.co/datasets/lmsys/mt_bench_human_judgments), and [Auto-J Eval](https://github.com/GAIR-NLP/auto-j/blob/main/data/test/testdata_pairwise.jsonl). 
-
-  - **Prometheus 2 (7B)** is a lighter version of Prometheus 2 (8x7B) model with reasonable performances (outperforming Llama-2-70B \& on par with Mixtral-8x7B). 
-    - It achieves at least 80% of the evaluation statistics or performances of Prometheus 2 (8x7B) 
-    - It requires only 16 GB of VRAM, making it suitable for running on consumer GPUs.
-
 ## 🔧 Installation
 
 Installation with pip:
